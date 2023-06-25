@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-# install.packages("renv")
+install.packages("renv")
 
 
 renv::activate()
