@@ -1,36 +1,56 @@
-# Base image https://hub.docker.com/u/rocker/
-FROM rocker/shiny:latest
+# VERSION 1.0
+# Shiny Version: 1.7.1
 
-# system libraries of general use
-## install debian packages
-RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-    libxml2-dev \
-    libcairo2-dev \
-    libsqlite3-dev \
-    libmariadbd-dev \
-    libpq-dev \
-    libssh2-1-dev \
-    unixodbc-dev \
-    libcurl4-openssl-dev \
-    libssl-dev
+FROM rocker/shiny-verse:latest
 
-## update system libraries
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get clean
-
-# copy necessary files
-## renv.lock file
-COPY /app/renv.lock ./renv.lock
-## app folder
-COPY /app ./app
-
-# install renv & restore packages
-RUN Rscript -e 'install.packages("renv")'
-RUN Rscript -e 'renv::restore()'
-
-# expose port
-EXPOSE 3838
-
-# run app on container start
-CMD ["R", "-e", "shiny::runApp('/app', host = '0.0.0.0', port = 3838)"]
+RUN apt-get update -qq \
+    && apt-get -y --no-install-recommends install \
+        lbzip2 \
+        libfftw3-dev \
+        libgdal-dev \
+        libgeos-dev \
+        libgsl0-dev \
+        libgl1-mesa-dev \
+        libglu1-mesa-dev \
+        libhdf4-alt-dev \
+        libhdf5-dev \
+        libjq-dev \
+        libpq-dev \
+        libproj-dev \
+        libprotobuf-dev \
+        libnetcdf-dev \
+        libsqlite3-dev \
+        libssl-dev \
+        libudunits2-dev \
+        netcdf-bin \
+        postgis \
+        protobuf-compiler \
+        sqlite3 \
+        tk-dev \
+        unixodbc-dev \
+        libsasl2-dev \
+        libv8-dev \
+        libsodium-dev \
+        libharfbuzz-dev \
+        libfribidi-dev \
+        gcc \
+        g++ \
+        libfreetype6-dev \ 
+        libglib2.0-dev \
+        libcairo2-dev \
+        meson \
+        pkg-config \
+        gtk-doc-tools \
+    && install2.r --error --deps TRUE -r http://cran.rstudio.com \
+        shiny \
+        bslib \
+        shinyWidgets \
+        shinythemes \
+        shinyjs \
+        mongolite \
+        jsonlite \
+        config \
+        remotes \
+        tidyquant \
+        plotly \
+    && installGithub.r business-science/shinyauthr
