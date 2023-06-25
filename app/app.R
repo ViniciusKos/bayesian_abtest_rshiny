@@ -9,6 +9,7 @@
 
 
 library(shiny)
+library(shinythemes)
 library(ggplot2)
 library(readr)
 library(magrittr)
@@ -19,6 +20,7 @@ df <- read_csv(r"(data_experiment_probas.csv)")
 
 # Define the UI
 ui <- fluidPage(
+  theme = shinytheme("cyborg"),
   titlePanel("Bayesian Test"),
   plotOutput("comparisonPlot")
   )
