@@ -10,7 +10,7 @@
 install.packages("renv")
 
 
-renv::activate()
+# renv::activate()
 
 
 # Sys.setenv(RETICULATE_PYTHON = r"(P:\Python\GitHub\bayesian_abtest\app_shiny\bayesian_env\Scripts\python.exe)")
