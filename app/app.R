@@ -7,12 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-install.packages("renv")
 
-renv::activate()
-
-
-# Sys.setenv(RETICULATE_PYTHON = r"(P:\Python\GitHub\bayesian_abtest\app_shiny\bayesian_env\Scripts\python.exe)")
 library(shiny)
 library(ggplot2)
 library(readr)
