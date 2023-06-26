@@ -1,12 +1,13 @@
 on: [push]
 
-name: deploy-shiny
+name: deploy-shiny-app
 
 jobs:
   deploy-shiny:
     runs-on: ubuntu-latest
     container: vinnykos/shinyauth
     steps:
+      - uses: actions/checkout@v2
       - name: Run docker container image
         run: |
-          docker run -d --name meu-shiny -p 3838:3838 vinnykos/shinyauth
+          Rscript -e 'print("hello")'
