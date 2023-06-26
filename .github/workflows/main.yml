@@ -22,4 +22,5 @@ jobs:
           ls -la
       - name: Get folder
         run: |
+          sudo apt-get install tree
           tree
