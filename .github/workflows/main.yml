@@ -10,4 +10,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run docker container image
         run: |
-          Rscript -e 'print("hello")'
+          pwd
