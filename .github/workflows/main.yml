@@ -22,6 +22,28 @@ jobs:
           sudo apt-get install tree
           tree
           
-      - name: run app
-        run: | 
-          R -e "shiny::runApp('app/app.R', port = 3838, host = '0.0.0.0', launch.browser = TRUE)"
+          
+      - name: Install dependencies
+        run: |
+          # Install required tools
+          sudo apt-get update
+          sudo apt-get install -y curl
+
+      - name: Test Shiny App
+        run: |
+          R -e "shiny::runApp('app/app.R', port = 3838, host = '0.0.0.0', launch.browser = FALSE)" &
+
+      - name: Wait for Shiny App to start
+        run: sleep 10
+        
+      - name: Test Shiny App
+        run: |
+          # Make an HTTP request to the running Shiny app
+          response=$(curl -sL -w "%{http_code}" http://localhost:3838/ -o /dev/null)
+          # Check the HTTP response code
+          if [ "$response" -eq 200 ]; then
+            echo "Shiny app is running."
+          else
+            echo "Shiny app is not running."
+          fi
+
