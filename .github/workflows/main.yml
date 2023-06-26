@@ -1,0 +1,13 @@
+on: [push]
+
+name: deploy-shiny
+
+jobs:
+  deploy-shiny:
+    runs-on: ubuntu-latest
+    container: vinnykos/shinyauth
+    steps:
+      - name: Run Shiny app
+        run: |
+          install.packages(c("shiny"), type = "binary")
+        shell: Rscript {0}
