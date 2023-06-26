@@ -7,7 +7,12 @@ jobs:
     runs-on: ubuntu-20.04
     container: 
       image: vinnykos/shinyauth
-      options: --rm -p 3838:3838 -v ${{ github.workspace }}/bayesian_abtest_rshiny/app/:/srv/shiny-server/test_app -v ${{ github.workspace }}/log/shiny-server/:/var/log/shiny-server/ vinnykos/shinyauth
+      options: --rm
+      ports:
+        - 3838:3838
+      volumes: 
+        - ${{ github.workspace }}/bayesian_abtest_rshiny/app/:/srv/shiny-server/test_app
+        - ${{ github.workspace }}/log/shiny-server/:/var/log/shiny-server/ vinnykos/shinyauth
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
