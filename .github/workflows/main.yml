@@ -22,4 +22,4 @@ jobs:
           ls -la
       - name: Get folder
         run: |
-          pwd
+          tree
