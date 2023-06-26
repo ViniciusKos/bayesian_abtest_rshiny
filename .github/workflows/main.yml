@@ -4,7 +4,7 @@ name: deploy-shiny-app
 
 jobs:
   deploy-shiny:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container: vinnykos/shinyauth
     steps:
       - uses: actions/checkout@v2
