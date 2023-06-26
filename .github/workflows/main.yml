@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: 
       image: vinnykos/shinyauth
-      options: --detach
+      options: --rm
       ports:
         - 3838:3838
       volumes: 
