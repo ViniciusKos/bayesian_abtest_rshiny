@@ -10,6 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run docker container image
         run: |
+            whereis docker
             sudo docker run --rm -p 3838:3838 vinikos/shinyauth \
             -v ${{ github.workspace }}/bayesian_abtest_rshiny/app/:/srv/shiny-server/test_app \
             -v ${{ github.workspace }}/log/shiny-server/:/var/log/shiny-server/ vinnykos/shinyauth
