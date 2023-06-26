@@ -5,11 +5,11 @@ name: deploy-shiny-app
 jobs:
   deploy-shiny:
     runs-on: ubuntu-latest
-    container: vinikos/shinyauth
+    container: vinnykos/shinyauth
     steps:
       - uses: actions/checkout@v2
       - name: Run docker container image
         run: |
             sudo docker run --rm -p 3838:3838 vinikos/shinyauth \
             -v ${{ github.workspace }}/bayesian_abtest_rshiny/app/:/srv/shiny-server/test_app \
-            -v ${{ github.workspace }}/log/shiny-server/:/var/log/shiny-server/ vinikos/shinyauth
+            -v ${{ github.workspace }}/log/shiny-server/:/var/log/shiny-server/ vinnykos/shinyauth
